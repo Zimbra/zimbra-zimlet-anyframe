@@ -1,0 +1,21 @@
+.anyFrameIcon {
+	padding: 5px 0 5px 25px;
+	min-height: 24px;
+	max-height: 24px;
+	min-width: 30px;
+	background-size: 20px 20px;
+	filter: grayscale(100%);
+}
+
+a[href$="/tab1"]:hover .anyFrameIcon,
+a[href$="/tab2"]:hover .anyFrameIcon,
+a[href$="/tab3"]:hover .anyFrameIcon,
+.zimbra-client_menu-item_active .anyFrameIcon {
+	padding: 5px 0 5px 25px;
+	max-height: 24px;
+	min-height: 24px;
+	min-width: 30px;
+	background-size: 20px 20px;
+	filter: grayscale(0%);
+}
+
