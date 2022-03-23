@@ -46,7 +46,7 @@ Here are the JSON properties explained:
 | url | url of the website to be displayed in a tab |
 | icon | url to the icon to be displayed on the tab |
 | name | name to be displayed on the tab  |
-| route | choose between "/", "/cloudapps/" or "/chatapps/" to display the tab under the puzzle, cloud or chat vertical  |
+| route | choose between `/`, `/cloudapps/` or `/chatapps/` to display the tab under the puzzle, cloud or chat vertical  |
 | allowDomains |  comma separated list of domains to allow or empty to allow for all  |
 | allowCOSID | comma separated list of Zimbra CoS ID's to allow or empty to allow for all |
 
