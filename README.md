@@ -20,7 +20,7 @@ To configure the Zimlet create a file /tmp/config_template.xml with the followin
 </zimletConfig>
 ```
 
-You can configure up to 3 custom integration tabs via the properties tab1, tab2 and tab3. If you only need one tab, just leave the properties for the other tabs emtpy like this:
+You can configure up to 3 custom integration tabs via the properties tab1, tab2 and tab3. If you only need one tab, just leave the properties for the other tabs empty like this:
 
 ```xml
 <property name="tab3"></property>
@@ -75,10 +75,10 @@ zmmailboxdctl restart
 Run the following commands as user zimbra to list all CoS on your server and find the ID.
 
 ```
-zimbra@zimbra9:~$ zmprov gac
+zimbra@zimbra:~$ zmprov gac
 default
 defaultExternal
-zimbra@zimbra9:~$ zmprov gc default zimbraId
+zimbra@zimbra:~$ zmprov gc default zimbraId
 # name default
 zimbraId: e00428a1-0c00-11d9-836a-000d93afea2a
 ```
