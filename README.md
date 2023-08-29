@@ -13,9 +13,9 @@ To configure the Zimlet create a file /tmp/config_template.xml with the followin
 ```xml
 <zimletConfig name="zimbra-zimlet-anyframe" version="0.0.1">
     <global>
-        <property name="tab1">{"url":"https://embed.windy.com/?52.032,4.310,11","icon":"https://www.windy.com/favicon.ico","name":"Windy.com","route":"/","allowDomains":"", "allowCOSID":""}</property>
+        <property name="tab1">{"url":"https://embed.windy.com/?52.032,4.310,11","icon":"https://www.windy.com/favicon.ico","name":"Windy.com","route":"/integrations/","allowDomains":"", "allowCOSID":""}</property>
         <property name="tab2">{"url":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46800.96020851833!2d-78.87109739351685!3d42.85046597320593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d31234c99a4875%3A0x57bea679387ecece!2sSynacor%2C%20Inc.!5e0!3m2!1sen!2snl!4v1648024277172!5m2!1sen!2snl","icon":"https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico","name":"Synacor Office","route":"/chatapps/","allowDomains":"", "allowCOSID":""}</property>
-        <property name="tab3">{"url":"https://blog.zimbra.com/","icon":"https://www.zimbra.com/wp-content/uploads/2019/05/Zimbra_favicon_144x144.png","name":"Zimbra Blog","route":"/cloudapps/","allowDomains":"", "allowCOSID":""}</property>
+        <property name="tab3">{"url":"https://blog.zimbra.com/","icon":"https://www.zimbra.com/wp-content/uploads/2023/07/cropped-favicon-32x32.png","name":"Zimbra Blog","route":"/cloudapps/","allowDomains":"", "allowCOSID":""}</property>
     </global>
 </zimletConfig>
 ```
@@ -31,7 +31,7 @@ Each tab you want to use has to be configured via JSON, please note that you hav
 ```json
 {
   "url": "https://blog.zimbra.com/",
-  "icon": "https://www.zimbra.com/wp-content/uploads/2019/05/Zimbra_favicon_144x144.png",
+  "icon": "https://www.zimbra.com/wp-content/uploads/2023/07/cropped-favicon-32x32.png",
   "name": "Zimbra Blog",
   "route": "/cloudapps/",
   "allowDomains": "",
@@ -46,9 +46,22 @@ Here are the JSON properties explained:
 | url | url of the website to be displayed in a tab |
 | icon | url to the icon to be displayed on the tab |
 | name | name to be displayed on the tab  |
-| route | choose between `/`, `/cloudapps/` or `/chatapps/` to display the tab under the puzzle, cloud or chat vertical  |
+| route | _see below table_  |
 | allowDomains |  comma separated list of domains to allow or empty to allow for all  |
 | allowCOSID | comma separated list of Zimbra CoS ID's to allow or empty to allow for all |
+
+For `route` property you can choose one of the following for each of the tabs:
+
+| Value | Description |
+|---|---|
+| /briefcase/ | Will appear in the briefcase/suitcase-icon vertical |
+| /calendar/  | Will appear in the calendar vertical |
+| /contacts/  | Will appear in the contacts/addressbook-icon vertical |
+| /chatapps/  | Will appear in the chat/square-speech-bubble-icon vertical |
+| /cloudapps/  | Will appear in the cloud-icon vertical
+| /email/     | Will appear in the email vertical |
+| /integrations/ | Will appear in the integrations/jigsaw-puzzle-icon vertical |
+
 
 To configure the AnyFrame Zimlet with your custom tabs run the following command as user zimbra:
 

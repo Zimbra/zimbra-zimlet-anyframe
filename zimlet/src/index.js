@@ -45,7 +45,7 @@ export default function Zimlet(context) {
 									{
 										"__typename": "ZimletConfigProperty",
 										"name": "tab1",
-										"content": "{'url':'https://embed.windy.com/?52.032,4.310,11','icon':'https://www.windy.com/favicon.ico','name':'Windy.com','route':'/','allowDomains':'', 'allowCOSID':''}"
+										"content": "{'url':'https://embed.windy.com/?52.032,4.310,11','icon':'https://www.windy.com/favicon.ico','name':'Windy.com','route':'/integrations/','allowDomains':'', 'allowCOSID':''}"
 									},
 									{
 										"__typename": "ZimletConfigProperty",
@@ -55,7 +55,7 @@ export default function Zimlet(context) {
 									{
 										"__typename": "ZimletConfigProperty",
 										"name": "tab3",
-										"content": "{'url':'https://blog.zimbra.com/','icon':'https://www.zimbra.com/wp-content/uploads/2019/05/Zimbra_favicon_144x144.png','name':'Zimbra Blog','route':'/cloudapps/','allowDomains':'', 'allowCOSID':''}"
+										"content": "{'url':'https://blog.zimbra.com/','icon':'https://www.zimbra.com/wp-content/uploads/2023/07/cropped-favicon-32x32.png','name':'Zimbra Blog','route':'/cloudapps/','allowDomains':'', 'allowCOSID':''}"
 									}
 								]
 							}
@@ -76,9 +76,25 @@ export default function Zimlet(context) {
 		};
 	}
 
-	let tab1 = false; try { tab1 = JSON.parse(globalConfig.get("tab1").replaceAll('\'', '"')); } catch (err) { tab1 = false; }
-	let tab2 = false; try { tab2 = JSON.parse(globalConfig.get("tab2").replaceAll('\'', '"')); } catch (err) { tab2 = false; }
-	let tab3 = false; try { tab3 = JSON.parse(globalConfig.get("tab3").replaceAll('\'', '"')); } catch (err) { tab3 = false; }
+	/*console.log("AnyFrame Zimlet config:");
+	console.log(globalConfig);
+	console.log("AnyFrame Zimlet tab1 config:");
+	console.log(globalConfig.get("tab1").replaceAll('\'', '"'));
+	console.log("AnyFrame Zimlet tab2 config:");
+	console.log(globalConfig.get("tab2").replaceAll('\'', '"'));
+	console.log("AnyFrame Zimlet tab3 config:");
+	console.log(globalConfig.get("tab3").replaceAll('\'', '"'));*/
+
+	let tab1 = false; try { tab1 = JSON.parse(globalConfig.get("tab1").replaceAll('\'', '"')); } catch (err) { tab1 = false; console.log("AnyFrame Zimlet Error getting tab1 JSON: "); console.log(err)}
+	let tab2 = false; try { tab2 = JSON.parse(globalConfig.get("tab2").replaceAll('\'', '"')); } catch (err) { tab2 = false; console.log("AnyFrame Zimlet Error getting tab2 JSON: "); console.log(err)}
+	let tab3 = false; try { tab3 = JSON.parse(globalConfig.get("tab3").replaceAll('\'', '"')); } catch (err) { tab3 = false; console.log("AnyFrame Zimlet Error getting tab3 JSON: "); console.log(err)}
+
+	/*console.log("AnyFrame Zimlet tab1 JSON:");
+	console.log(tab1);
+	console.log("AnyFrame Zimlet tab2 JSON:");
+	console.log(tab2);
+	console.log("AnyFrame Zimlet tab3 JSON:");
+	console.log(tab3);*/
 
 	//permissions
 	//in case allowDomains is set: only show tab if the user's domain is listed in allowDomains
@@ -108,6 +124,14 @@ export default function Zimlet(context) {
 			tab3 = false;
 	}
 
+
+	/*console.log("AnyFrame Zimlet after rights applied tab1:");
+	console.log(tab1);
+	console.log("AnyFrame Zimlet after rights applied tab2:");
+	console.log(tab2);
+	console.log("AnyFrame Zimlet after rights applied tab3:");
+	console.log(tab3);*/
+
 	function router1() {
 		return [<App path={tab1.route + `tab1`}>{tab1}</App>];
 	}
@@ -129,14 +153,26 @@ export default function Zimlet(context) {
 			));
 
 			switch (tab1.route) {
-				case '/':
-					plugins.register("slot::menu", tab1menu);
+				case '/briefcase/':
+					plugins.register("slot::briefcase-tab-item", tab1menu);
+					break;
+				case '/calendar/':
+					plugins.register("slot::calendar-tab-item", tab1menu);
+					break;
+				case '/contacts/':
+					plugins.register("slot::contacts-tab-item", tab1menu);
 					break;
 				case '/chatapps/':
 					plugins.register('slot::chatapps-tab-item', tab1menu);
 					break;
 				case '/cloudapps/':
 					plugins.register('slot::cloudapps-tab-item', tab1menu);
+					break;
+				case '/email/':
+					plugins.register("slot::email-tab-item", tab1menu);
+					break;
+				case '/integrations/':
+					plugins.register("slot::integrations-tab-item", tab1menu);
 					break;
 			}
 			plugins.register("slot::routes", router1);
@@ -150,8 +186,14 @@ export default function Zimlet(context) {
 				</MenuItem>
 			));
 			switch (tab2.route) {
-				case '/':
-					plugins.register("slot::menu", tab2menu);
+				case '/briefcase/':
+					plugins.register("slot::briefcase-tab-item", tab2menu);
+					break;
+				case '/calendar/':
+					plugins.register("slot::calendar-tab-item", tab2menu);
+					break;
+				case '/contacts/':
+					plugins.register("slot::contacts-tab-item", tab2menu);
 					break;
 				case '/chatapps/':
 					plugins.register('slot::chatapps-tab-item', tab2menu);
@@ -159,7 +201,12 @@ export default function Zimlet(context) {
 				case '/cloudapps/':
 					plugins.register('slot::cloudapps-tab-item', tab2menu);
 					break;
-			}
+				case '/email/':
+					plugins.register("slot::email-tab-item", tab2menu);
+					break;
+				case '/integrations/':
+					plugins.register("slot::integrations-tab-item", tab2menu);
+					break;			}
 			plugins.register("slot::routes", router2);
 		}
 		if (tab3) {
@@ -171,14 +218,26 @@ export default function Zimlet(context) {
 				</MenuItem>
 			));
 			switch (tab3.route) {
-				case '/':
-					plugins.register("slot::menu", tab3menu);
+				case '/briefcase/':
+					plugins.register("slot::briefcase-tab-item", tab3menu);
+					break;
+				case '/calendar/':
+					plugins.register("slot::calendar-tab-item", tab3menu);
+					break;
+				case '/contacts/':
+					plugins.register("slot::contacts-tab-item", tab3menu);
 					break;
 				case '/chatapps/':
 					plugins.register('slot::chatapps-tab-item', tab3menu);
 					break;
 				case '/cloudapps/':
 					plugins.register('slot::cloudapps-tab-item', tab3menu);
+					break;
+				case '/email/':
+					plugins.register("slot::email-tab-item", tab3menu);
+					break;
+				case '/integrations/':
+					plugins.register("slot::integrations-tab-item", tab3menu);
 					break;
 			}
 			plugins.register("slot::routes", router3);

@@ -1,6 +1,9 @@
 {
-	"zimbra-zimlet-anyframe": {
-		"label": ""
-	}
+  "zimlet": {
+    "label": "Iframe integrations",
+    "description": "Show websites as a tab in Zimbra Modern UI"
+  },
+  "zimbra-zimlet-anyframe": {
+    "label": ""
+  }
 }
-
